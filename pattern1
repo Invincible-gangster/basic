@@ -1,0 +1,38 @@
+//Spiral pattern using 2d array and numbers in java
+import java.util.Scanner;
+public class Main{
+    public static void SpiralMatrix(int n) {
+        int[][] matrix = new int[n][n];
+        int up=0, b=n-1;
+        int left=0, right=n-1;
+        int num=1;
+        while(up<=b && left<=right) {
+            for(int i=left;i<=right;i++)
+                matrix[up][i]=num++;
+            up++;
+            for(int i=up;i<=b;i++)
+                matrix[i][right]=num++;
+            right--;
+            if(up<=b) {
+                for(int i=right;i>=left;i--)
+                    matrix[b][i]=num++;
+                b--;
+            }
+            if(left<=right) {
+                for(int i=b;i>=up;i--)
+                    matrix[i][left]=num++;
+                left++;
+            }
+        }
+        for(int[] row:matrix){
+            for(int val:row)
+                System.out.print(val + " ");
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        SpiralMatrix(n);
+    }
+}
